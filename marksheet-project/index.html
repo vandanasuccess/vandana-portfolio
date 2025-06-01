@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marksheet Single Student - No Arrays</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+    <h2 class="text-2xl font-bold text-center text-purple-700 mb-6">📘 Student Marksheet</h2>
+
+    <div class="space-y-4 mb-6">
+      <input type="text" id="name" placeholder="Student Name" class="w-full p-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500" />
+      <input type="number" id="math" placeholder="Math Marks" class="w-full p-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500" />
+      <input type="number" id="science" placeholder="Science Marks" class="w-full p-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500" />
+      <input type="number" id="english" placeholder="English Marks" class="w-full p-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500" />
+    </div>
+
+    <button onclick="calculateMarksheet()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-2 rounded-xl hover:from-indigo-500 hover:to-purple-500  mb-6">
+      🎓 Calculate
+    </button>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm text-center border border-purple-300 rounded-xl shadow">
+        <thead class="bg-purple-100 text-purple-700 font-semibold">
+          <tr>
+            <th class="px-4 py-2 border">Name</th>
+            <th class="px-4 py-2 border">Total</th>
+            <th class="px-4 py-2 border">%</th>
+            <th class="px-4 py-2 border">Grade</th>
+            <th class="px-4 py-2 border">Result</th>
+          </tr>
+        </thead>
+        <tbody id="result-table" class="bg-white text-gray-700">
+          <!-- Result row inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function calculateMarksheet() {
+      const name = document.getElementById('name').value.trim();
+      const math = parseFloat(document.getElementById('math').value);
+      const science = parseFloat(document.getElementById('science').value);
+      const english = parseFloat(document.getElementById('english').value);
+      const tableBody = document.getElementById('result-table');
+
+      if (!name || isNaN(math) || isNaN(science) || isNaN(english)) {
+        alert("❗ Please fill all fields correctly.");
+        return;
+      }
+
+      const total = math + science + english;
+      const percentage = (total / 300) * 100;
+
+      let grade = '';
+      if (percentage >= 90) grade = 'A+';
+      else if (percentage >= 75) grade = 'A';
+      else if (percentage >= 60) grade = 'B';
+      else if (percentage >= 40) grade = 'C';
+      else grade = 'F';
+
+      // Check which subjects failed (less than 40)
+      let failCount = 0;
+      let failedSubjects = '';
+
+      if (math < 40) {
+        failCount++;
+        failedSubjects += 'Math';
+      }
+
+    
+
+if (science < 40) 
+{
+    failCount = failCount + 1;
+
+
+  if (failedSubjects === '') {
+    failedSubjects = 'Science';
+  } else {
+    failedSubjects = failedSubjects + ', Science';
+  }
+}
+
+if (english < 40) {
+  failCount = failCount + 1;
+
+  if (failedSubjects === '') {
+    failedSubjects = 'english';
+  } else {
+    failedSubjects = failedSubjects + ', english';
+  }
+}
+
+
+
+
+
+      let result = '';
+      if (failCount === 0) {
+        result = "✅ Pass";
+      } else if (failCount === 1) {
+        result = `⚠️ Supply in ${failedSubjects}`;
+      } else {
+        result = `❌ Fail in ${failedSubjects}`;
+      }
+
+      // Insert single student result row (replace old)
+      tableBody.innerHTML = `
+        <tr class="hover:bg-purple-50 transition">
+          <td class="px-4 py-2 border">${name}</td>
+          <td class="px-4 py-2 border">${total}</td>
+          <td class="px-4 py-2 border">${percentage.toFixed(2)}%</td>
+          <td class="px-4 py-2 border">${grade}</td>
+          <td class="px-4 py-2 border">${result}</td>
+        </tr>
+      `;
+    }
+  </script>
+</body>
+</html>
 
