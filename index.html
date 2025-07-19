@@ -5,19 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vandana Malviya - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gradient-to-b from-blue-100 to-purple-100 text-gray-800 font-sans">
 
-  <!-- 🔐 PASSWORD PROTECTION START -->
-  <script>
-    const allowedPassword = "vandana@123";
-    const userInput = prompt("Enter portfolio password:");
-    if (userInput !== allowedPassword) {
-      document.body.innerHTML = "<h2 style='color:red;text-align:center;margin-top:50px;'>Access Denied</h2>";
+  <!-- 🔐 Hide page until password check -->
+  <style>
+    body {
+      display: none;
     }
-  </script>
-  <!-- 🔐 PASSWORD PROTECTION END -->
+  </style>
 
+  <!-- 🔐 PASSWORD PROTECTION -->
+  <script>
+    window.onload = function () {
+      const allowedPassword = "vandana@123";
+      const userInput = prompt("Enter portfolio password:");
+      if (userInput === allowedPassword) {
+        document.body.style.display = "block"; // ✅ show content
+      } else {
+        document.body.style.display = "block"; // show access denied message
+        document.body.innerHTML = `
+          <h2 style="color:red;text-align:center;margin-top:50px;">
+            ❌ Access Denied<br>Incorrect Password
+          </h2>`;
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-gradient-to-b from-blue-100 to-purple-100 text-gray-800 font-sans">
   <div class="container mx-auto px-4 py-10">
     <div class="text-center">
       <h1 class="text-4xl font-bold text-purple-700 mb-4">Vandana Malviya</h1>
@@ -30,13 +44,13 @@
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
         <h2 class="text-xl font-semibold mb-2 text-purple-600">About Me</h2>
-        <p class="text-gray-700">I am a dedicated software trainer and developer with over 15 years of experience in teaching and mentoring students in Java, Python, Web Technologies, Android, and more. Passionate about helping learners grow through hands-on projects and real-world applications.</p>
+        <p class="text-gray-700">I am a dedicated software trainer and developer with over 15 years of experience in teaching and mentoring students in Java, Python, Web Technologies, Android, and more.</p>
       </div>
 
       <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
         <h2 class="text-xl font-semibold mb-2 text-purple-600">Technical Skills</h2>
         <ul class="list-disc pl-5 text-gray-700">
-          <li>Languages: C, C++, Java (Core & Advanced), Python, PHP</li>
+          <li>Languages: C, C++, Java, Python, PHP</li>
           <li>Web: HTML, CSS, JavaScript, Bootstrap, React, Tailwind</li>
           <li>Mobile: Android Development</li>
           <li>Database: MySQL, Oracle</li>
@@ -57,9 +71,9 @@
 
       <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
         <h2 class="text-xl font-semibold mb-2 text-purple-600">Contact</h2>
-        <p class="text-gray-700">📧 Email: <a href="mailto:vandana2022malviya@gmail.com" class="text-blue-600 hover:underline">vandana2022malviya@gmail.com</a></p>
-        <p class="text-gray-700">📞 Mobile: +91 7974004062 / 7771908680</p>
-        <p class="text-gray-700">📍 Location: Indore, Madhya Pradesh</p>
+        <p class="text-gray-700">📧 <a href="mailto:vandana2022malviya@gmail.com" class="text-blue-600 hover:underline">vandana2022malviya@gmail.com</a></p>
+        <p class="text-gray-700">📞 +91 7974004062 / 7771908680</p>
+        <p class="text-gray-700">📍 Indore, Madhya Pradesh</p>
       </div>
     </div>
 
