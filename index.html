@@ -5,81 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vandana Malviya - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 🔐 Hide page until password check -->
   <style>
-    body {
+    #mainContent {
       display: none;
     }
   </style>
-
-  <!-- 🔐 PASSWORD PROTECTION -->
-  <script>
-    window.onload = function () {
-      const allowedPassword = "vandana@123";
-      const userInput = prompt("Enter portfolio password:");
-      if (userInput === allowedPassword) {
-        document.body.style.display = "block"; // ✅ show content
-      } else {
-        document.body.style.display = "block"; // show access denied message
-        document.body.innerHTML = `
-          <h2 style="color:red;text-align:center;margin-top:50px;">
-            ❌ Access Denied<br>Incorrect Password
-          </h2>`;
-      }
-    };
-  </script>
 </head>
 
 <body class="bg-gradient-to-b from-blue-100 to-purple-100 text-gray-800 font-sans">
-  <div class="container mx-auto px-4 py-10">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold text-purple-700 mb-4">Vandana Malviya</h1>
-      <p class="text-lg text-gray-700 mb-6">Senior Software Trainer | Full Stack Developer | 15+ Years Experience</p>
-      <a href="Vandana_Malviya_Developer_Resume.pdf" target="_blank" class="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300">
-        📄 View Resume (PDF)
-      </a>
-    </div>
 
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-        <h2 class="text-xl font-semibold mb-2 text-purple-600">About Me</h2>
-        <p class="text-gray-700">I am a dedicated software trainer and developer with over 15 years of experience in teaching and mentoring students in Java, Python, Web Technologies, Android, and more.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-        <h2 class="text-xl font-semibold mb-2 text-purple-600">Technical Skills</h2>
-        <ul class="list-disc pl-5 text-gray-700">
-          <li>Languages: C, C++, Java, Python, PHP</li>
-          <li>Web: HTML, CSS, JavaScript, Bootstrap, React, Tailwind</li>
-          <li>Mobile: Android Development</li>
-          <li>Database: MySQL, Oracle</li>
-          <li>Tools: Eclipse, NetBeans, VS Code</li>
-        </ul>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-        <h2 class="text-xl font-semibold mb-2 text-purple-600">Projects</h2>
-        <ul class="list-disc pl-5 text-gray-700">
-          <li>E-FixMan.com - Mobile Repair Booking Platform</li>
-          <li>Airlines Reservation System</li>
-          <li>Pic Puzzle Game (Swing)</li>
-          <li>Online Shopping & Travel Tour Web Apps</li>
-          <li>Android Apps: Online Restaurant, Pizza Parlor, Batch Listing</li>
-        </ul>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-        <h2 class="text-xl font-semibold mb-2 text-purple-600">Contact</h2>
-        <p class="text-gray-700">📧 <a href="mailto:vandana2022malviya@gmail.com" class="text-blue-600 hover:underline">vandana2022malviya@gmail.com</a></p>
-        <p class="text-gray-700">📞 +91 7974004062 / 7771908680</p>
-        <p class="text-gray-700">📍 Indore, Madhya Pradesh</p>
-      </div>
-    </div>
-
-    <footer class="text-center mt-12 text-gray-600">
-      © 2025 Vandana Malviya. All rights reserved.
-    </footer>
+  <!-- 🔐 Login Box -->
+  <div id="loginBox" class="min-h-screen flex flex-col justify-center items-center bg-white">
+    <h2 class="text-2xl font-semibold text-purple-700 mb-4">🔒 Enter Password to View Portfolio</h2>
+    <input id="passwordInput" type="password" placeholder="Enter Password" class="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring" />
+    <button onclick="checkPassword()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Submit</button>
+    <p id="error" class="mt-2 text-red-600 font-medium"></p>
   </div>
+
+  <!-- ✅ Hidden Portfolio Content -->
+  <div id="mainContent">
+    <div class="container mx-auto px-4 py-10">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-purple-700 mb-4">Vandana Malviya</h1>
+        <p class="text-lg text-gray-700 mb-6">Senior Software Trainer | Full Stack Developer | 15+ Years Experience</p>
+        <a href="Vandana_Malviya_Developer_Resume.pdf" target="_blank" class="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300">
+          📄 View Resume (PDF)
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold mb-2 text-purple-600">About Me</h2>
+          <p class="text-gray-700">I am a dedicated software trainer and developer with over 15 years of experience in teaching and mentoring students in Java, Python, Web Technologies, Android, and more.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold mb-2 text-purple-600">Technical Skills</h2>
+          <ul class="list-disc pl-5 text-gray-700">
+            <li>Languages: C, C++, Java, Python, PHP</li>
+            <li>Web: HTML, CSS, JavaScript, Bootstrap, React, Tailwind</li>
+            <li>Mobile: Android Development</li>
+            <li>Database: MySQL, Oracle</li>
+            <li>Tools: Eclipse, NetBeans, VS Code</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold mb-2 text-purple-600">Projects</h2>
+          <ul class="list-disc pl-5 text-gray-700">
+            <li>E-FixMan.com - Mobile Repair Booking Platform</li>
+            <li>Airlines Reservation System</li>
+            <li>Pic Puzzle Game (Swing)</li>
+            <li>Online Shopping & Travel Tour Web Apps</li>
+            <li>Android Apps: Online Restaurant, Pizza Parlor, Batch Listing</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold mb-2 text-purple-600">Contact</h2>
+          <p class="text-gray-700">📧 <a href="mailto:vandana2022malviya@gmail.com" class="text-blue-600 hover:underline">vandana2022malviya@gmail.com</a></p>
+          <p class="text-gray-700">📞 +91 7974004062 / 7771908680</p>
+          <p class="text-gray-700">📍 Indore, Madhya Pradesh</p>
+        </div>
+      </div>
+
+      <footer class="text-center mt-12 text-gray-600">
+        © 2025 Vandana Malviya. All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const error = document.getElementById("error");
+
+      if (input === "vandana@123") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      } else {
+        error.textContent = "❌ Incorrect password. Access denied.";
+        document.getElementById("mainContent").style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
